@@ -20,7 +20,7 @@ def main():
         imgui.text("Hello world")
         imgui.end()
 
-        # gl.glClearColor(1.0, 1.0, 1.0, 1)
+        # gl.glClearColor(1.0, 1.0, 1.0, 1) #Change background color
         gl.glClear(gl.GL_COLOR_BUFFER_BIT)
 
         imgui.render()
