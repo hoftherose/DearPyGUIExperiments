@@ -1,55 +1,18 @@
-import imgui
-import glfw
-import sys
+import dearpygui.dearpygui as dpg
 
-import OpenGL.GL as gl
-from imgui.integrations.glfw import GlfwRenderer
+def save_callback():
+    print("Save Clicked")
 
-def main():
-    window = impl_glfw_init()
-    imgui.create_context()
-    impl = GlfwRenderer(window)
-    
-    while not glfw.window_should_close(window):
-        glfw.poll_events()
-        impl.process_inputs()
+dpg.create_context()
+dpg.create_viewport()
+dpg.setup_dearpygui()
 
-        imgui.new_frame()
-        
-        imgui.begin("Your first window!")
-        imgui.text("Hello world")
-        imgui.end()
+with dpg.window(label="Example Window"):
+    dpg.add_text("Hello world")
+    dpg.add_button(label="Save", callback=save_callback)
+    dpg.add_input_text(label="string")
+    dpg.add_slider_float(label="float")
 
-        # gl.glClearColor(1.0, 1.0, 1.0, 1) #Change background color
-        gl.glClear(gl.GL_COLOR_BUFFER_BIT)
-
-        imgui.render()
-        impl.render(imgui.get_draw_data())
-        glfw.swap_buffers(window)
-
-    impl.shutdown()
-    glfw.terminate()
-
-def impl_glfw_init():
-    width, height = 1280, 720
-    window_name = "testing window"
-    if not glfw.init():
-        # TODO error handling
-        print("Could not initialize OpenGL context")
-        sys.exit(1)
-    
-    glfw.window_hint(glfw.CONTEXT_VERSION_MAJOR, 3)
-    glfw.window_hint(glfw.CONTEXT_VERSION_MINOR, 3)
-
-    window = glfw.create_window(int(width), int(height), window_name, None, None)
-    glfw.make_context_current(window)
-
-    if not window:
-        glfw.terminate()
-        print("Could not initialize Window")
-        sys.exit()
-
-    return window
-
-if __name__ == "__main__":
-    main()
+dpg.show_viewport()
+dpg.start_dearpygui()
+dpg.destroy_context()
