@@ -2,6 +2,7 @@ import imgui
 import glfw
 import sys
 
+import OpenGL.GL as gl
 from imgui.integrations.glfw import GlfwRenderer
 
 def main():
@@ -16,15 +17,18 @@ def main():
         imgui.new_frame()
         
         imgui.begin("Your first window!")
-
         imgui.text("Hello world")
-
         imgui.end()
 
+        # gl.glClearColor(1.0, 1.0, 1.0, 1)
+        gl.glClear(gl.GL_COLOR_BUFFER_BIT)
+
         imgui.render()
+        impl.render(imgui.get_draw_data())
         glfw.swap_buffers(window)
 
     impl.shutdown()
+    glfw.terminate()
 
 def impl_glfw_init():
     width, height = 1280, 720
