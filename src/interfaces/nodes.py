@@ -1,5 +1,5 @@
 class Attributes:
-    def __init__(self, name, attribute_type=None, **kwargs):
+    def __init__(self, name, attribute_type=0, **kwargs):
         self.name = name
         self.attribute_type = attribute_type
         self.params = kwargs
@@ -12,6 +12,10 @@ class Attributes:
 
     def GetParams(self) -> dict[str, any]:
         return self.params
+    
+    def GenerateAttribute(self, dpg):
+        with dpg.node_attribute(label=self.GetName, attribute_type=self.GetAttributeType()):
+            dpg.add_input_float(**self.GetParams())
 
 class Nodes:
     def __init__(self, name: str, attributes: list[Attributes], **kwargs):
@@ -27,3 +31,10 @@ class Nodes:
 
     def GetParams(self) -> dict[str, any]:
         return self.params
+
+    def GenerateNode(self, dpg):
+        with dpg.node(label=self.GetName()):
+            for attr in self.GetAttributes():
+                attr.GenerateAttribute(dpg)
+
+            

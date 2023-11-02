@@ -15,25 +15,14 @@ def main():
                 Attributes("Node A2", attribute_type=dpg.mvNode_Attr_Output, label="F2", width=150),
             ]),
             Nodes("Node 2", [
-                Attributes("Node A3", label="F3", width=150),
-                Attributes("Node A4", attribute_type=dpg.mvNode_Attr_Output, label="F4", width=150),
+                Attributes("Node A3", label="F3", width=200),
+                Attributes("Node A4", attribute_type=dpg.mvNode_Attr_Output, label="F4", width=200),
             ])]
     with dpg.window(label="Tutorial", width=400, height=400):
 
         with dpg.node_editor(callback=link_callback, delink_callback=delink_callback):
-            with dpg.node(label="Node 1"):
-                with dpg.node_attribute(label="Node A1"):
-                    dpg.add_input_float(label="F1", width=150)
-
-                with dpg.node_attribute(label="Node A2", attribute_type=dpg.mvNode_Attr_Output):
-                    dpg.add_input_float(label="F2", width=150)
-
-            with dpg.node(label="Node 2"):
-                with dpg.node_attribute(label="Node A3"):
-                    dpg.add_input_float(label="F3", width=200)
-
-                with dpg.node_attribute(label="Node A4", attribute_type=dpg.mvNode_Attr_Output):
-                    dpg.add_input_float(label="F4", width=200)
+            for node in nodes:
+                node.GenerateNode(dpg)
 
     dpg.create_viewport(title='Custom Title', width=800, height=600)
     dpg.setup_dearpygui()
