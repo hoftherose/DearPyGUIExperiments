@@ -11,12 +11,10 @@ def delink_callback(sender, app_data):
 
 def main():
     nodes = [Nodes("Node 1", [
-                Attributes("Node A1", label="F1", width=150),
-                Attributes("Node A2", attribute_type=dpg.mvNode_Attr_Output, label="F2", width=150),
+                Attributes(attribute_type=dpg.mvNode_Attr_Output, label="F2", width=150),
             ]),
             Nodes("Node 2", [
-                Attributes("Node A3", label="F3", width=200),
-                Attributes("Node A4", attribute_type=dpg.mvNode_Attr_Output, label="F4", width=200),
+                Attributes(attribute_type=dpg.mvNode_Attr_Output, label="F4", width=200),
             ])]
     with dpg.window(label="Tutorial", width=400, height=400):
 
