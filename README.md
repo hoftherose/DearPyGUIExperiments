@@ -1,3 +1,3 @@
-# PyIMGUI
+# ChatGPT DND generator
 
-Python project using imgui wrapper.
+DND Story Idea Generator and editor for linking together stories.
