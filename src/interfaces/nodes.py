@@ -1,22 +1,25 @@
 class Attributes:
-    def __init__(self):
-        pass
+    def __init__(self, name, **kwargs):
+        self.name = name
+        self.params = kwargs
 
     def GetName(self) -> str:
-        pass
+        return self.name
 
     def GetParams(self) -> dict[str, any]:
-        pass
+        return self.params
 
 class Nodes:
-    def __init__(self, name: str, attributes: [Attributes]):
-        pass
+    def __init__(self, name: str, attributes: list[Attributes], **kwargs):
+        self.name = name
+        self.attributes = attributes
+        self.params = kwargs
 
     def GetName(self) -> str:
-        pass
+        return self.name
 
     def GetAttributes(self) -> list[Attributes]:
-        pass
+        return self.attributes
 
-    def GetParams(self) -> list[Attributes]:
-        pass
+    def GetParams(self) -> dict[str, any]:
+        return self.params
