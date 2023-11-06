@@ -1,5 +1,6 @@
 import dearpygui.dearpygui as dpg
-from src.interfaces.nodes import Nodes, Attributes
+from src.objects.nodes import Nodes, Attributes
+from src.app.manager import AppManager, nodes
 
 dpg.create_context()
 
@@ -10,13 +11,10 @@ def delink_callback(sender, app_data):
     dpg.delete_item(app_data)
 
 def main():
-    nodes = [Nodes("Node 1", [
-                Attributes(attribute_type=dpg.mvNode_Attr_Output, label="F2", width=150),
-            ]),
-            Nodes("Node 2", [
-                Attributes(attribute_type=dpg.mvNode_Attr_Output, label="F4", width=200),
-            ])]
+    app = AppManager()
+
     with dpg.window(label="Tutorial", width=400, height=400):
+        app.SetupMenu()
 
         with dpg.node_editor(callback=link_callback, delink_callback=delink_callback):
             for node in nodes:
